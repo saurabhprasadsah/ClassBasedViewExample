@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
 from .models import Employee
 from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView
@@ -23,9 +23,27 @@ class DisplayClassView(TemplateView):
 
 
 def addPage(Request):
+    if(Request.method=="POST"):
+        ef= EmplyeeForm(Request.POST)
+        if(ef.is_valid()):
+            e = Employee()
+            e.name= ef.cleaned_data['name']
+            e.email=ef.cleaned_data['email']
+            e.phone=ef.cleaned_data['phone']
+            e.dsg=ef.cleaned_data['dsg']
+            e.salary=ef.cleaned_data['salary']
+            e.city =ef.cleaned_data['city']
+            e.state =ef.cleaned_data['state']
+            e.save()
+            # return render(HttpResponseRedirect(Request,"editPage.html"))
+            return(HttpResponseRedirect('/'))
     ef = EmplyeeForm()
     return render(Request,"add.html",{'form':ef})
 
+
+def editPage(Request):
+
+    return render(Request,'edit.html')
 
 
 
