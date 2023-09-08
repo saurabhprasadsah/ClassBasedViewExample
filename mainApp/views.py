@@ -36,7 +36,7 @@ def addPage(Request):
             e.state =ef.cleaned_data['state']
             e.save()
             # return render(HttpResponseRedirect(Request,"editPage.html"))
-            return(HttpResponseRedirect('/'))
+            return(HttpResponseRedirect('/')) #
     ef = EmplyeeForm()
     return render(Request,"add.html",{'form':ef})
 
