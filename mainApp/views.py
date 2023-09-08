@@ -10,3 +10,7 @@ def homepage(Request):
     page_obj = paginator.get_page(page_number)
     return render(Request, "index.html", {"data": page_obj})
 
+
+
+
+
