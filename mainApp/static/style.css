@@ -1,7 +1,12 @@
 .mid-section{
-    background-color: red;
+    background-color: yellow;
+    height: 600px;
+    position: relative;
 }
 
-.my-paginatation{
+.my-pagination{ 
+    position: absolute;
+    bottom: 0;
+    left: 75%;
 
 }
