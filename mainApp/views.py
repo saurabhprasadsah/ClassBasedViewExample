@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView
 from .forms import EmplyeeForm
 
-
+#class view template
 class DisplayClassView(TemplateView):
     template_name="index.html"
     def get_context_data(self,*args,**kwargs):
@@ -21,7 +21,7 @@ class DisplayClassView(TemplateView):
 #     page_obj = paginator.get_page(page_number)
 #     return render(Request, "index.html", {"data": page_obj})
 
-
+#Using django-forms to post the request
 def addPage(Request):
     if(Request.method=="POST"):
         ef= EmplyeeForm(Request.POST)
@@ -36,7 +36,7 @@ def addPage(Request):
             e.state =ef.cleaned_data['state']
             e.save()
             # return render(HttpResponseRedirect(Request,"editPage.html"))
-            return(HttpResponseRedirect('/')) #
+            return(HttpResponseRedirect('/')) # redirct to the page
     ef = EmplyeeForm()
     return render(Request,"add.html",{'form':ef})
 
