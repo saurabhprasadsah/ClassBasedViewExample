@@ -1,7 +1,8 @@
 .mid-section{
-    background-color: yellow;
-    height: 600px;
+        /* background-color: yellow; */
+    height: 620px;
     position: relative;
+    overflow: auto;
 }
 
 .my-pagination{ 
