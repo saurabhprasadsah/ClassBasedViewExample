@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Employee
 from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView
-
+from .forms import EmplyeeForm
 
 
 class DisplayClassView(TemplateView):
@@ -24,7 +24,8 @@ class DisplayClassView(TemplateView):
 
 
 def addPage(Request):
-    return render(Request,"add.html",)
+    ef = EmplyeeForm()
+    return render(Request,"add.html",{'form':ef})
 
 
 
