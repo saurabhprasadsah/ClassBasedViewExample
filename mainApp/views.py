@@ -22,7 +22,6 @@ class DisplayClassView(TemplateView):
 #     return render(Request, "index.html", {"data": page_obj})
 
 
-
 def addPage(Request):
     ef = EmplyeeForm()
     return render(Request,"add.html",{'form':ef})
