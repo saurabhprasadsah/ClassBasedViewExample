@@ -37,8 +37,12 @@ def addPage(Request):
             e.save()
             # return render(HttpResponseRedirect(Request,"editPage.html"))
             return(HttpResponseRedirect('/')) # redirct to the page
-    ef = EmplyeeForm()
-    return render(Request,"add.html",{'form':ef})
+        else:
+            pass
+    else:     
+        ef = EmplyeeForm()
+        return render(Request,"add.html",{'form':ef})
+
 
 
 def editPage(Request):
