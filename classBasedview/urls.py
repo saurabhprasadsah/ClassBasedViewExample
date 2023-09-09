@@ -25,9 +25,11 @@ urlpatterns = [
     # path("", TemplateView.as_view(template_name="index.html"),name="home"),    
     # path("",views.homepage,name="home"),
     path("", views.EmployeeClassView.as_view(), name="home"),
-    
-    path("addPage", views.EmployeePostclassView.as_view(), name="add"),
 
+    path("addPage/", views.EmployeePostclassView.as_view(), name="add"),
+
+    # path("delete/<int:id>", views.deletePage.as_view(), name="delete"),
+    path("delete/<int:id>/",views.deletePage, name='delete'),
 
     # path("addPage/",views.addPage,name='add'),
     # path("editPage/", views.editPage, name='edit')

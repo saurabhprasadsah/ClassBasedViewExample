@@ -44,7 +44,12 @@ class EmployeePostclassView(TemplateView):
 
 
 
-
+def deletePage(Request,id):
+    try:
+        data= Employee.objects.get(id=id).delete()
+    except:
+        pass
+    return HttpResponseRedirect("/")    
 
 
 
