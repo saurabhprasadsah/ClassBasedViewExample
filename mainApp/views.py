@@ -10,7 +10,7 @@ class DisplayClassView(TemplateView):
     template_name="index.html"
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
-        data = Employee.objects.all().order_by("-id")
+        data = Employee.objects.all().order_by("id")
         context={'data':data}
         return context
 
@@ -21,7 +21,8 @@ class DisplayClassView(TemplateView):
 #     page_obj = paginator.get_page(page_number)
 #     return render(Request, "index.html", {"data": page_obj})
 
-#Using django-forms to post the request
+#Using django-forms to post the request!
+#but this is function based views
 def addPage(Request):
     if(Request.method=="POST"):
         ef= EmplyeeForm(Request.POST)
@@ -38,10 +39,15 @@ def addPage(Request):
             # return render(HttpResponseRedirect(Request,"editPage.html"))
             return(HttpResponseRedirect('/')) # redirct to the page
         else:
-            pass
+            return render(Request,"add.html",{'form':ef})
+
     else:     
         ef = EmplyeeForm()
         return render(Request,"add.html",{'form':ef})
+
+
+
+
 
 
 def editPage(Request):
