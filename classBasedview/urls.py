@@ -28,8 +28,11 @@ urlpatterns = [
 
     path("addPage/", views.EmployeePostclassView.as_view(), name="add"),
 
-    # path("delete/<int:id>", views.deletePage.as_view(), name="delete"),
-    path("delete/<int:id>/",views.deletePage, name='delete'),
+    # path("delete/<int:id>/",views.deletePage, name='delete'),
+    path('delete/<int:id>/', views.EmployeeDeletePage.as_view(),name="delete")
+
+
+
 
     # path("addPage/",views.addPage,name='add'),
     # path("editPage/", views.editPage, name='edit')

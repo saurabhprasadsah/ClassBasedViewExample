@@ -1,7 +1,8 @@
+from typing import Any
 from django.shortcuts import render,HttpResponseRedirect
 from .models import Employee
 from django.core.paginator import Paginator
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView,RedirectView
 from .forms import EmplyeeForm
 
 
@@ -44,12 +45,23 @@ class EmployeePostclassView(TemplateView):
 
 
 #function based view
-def deletePage(Request,id):
-    try:
-        data= Employee.objects.get(id=id).delete()
-    except:
-        pass
-    return HttpResponseRedirect("/")    
+# def deletePage(Request,id):
+#     try:
+#         data= Employee.objects.get(id=id).delete()
+#     except:
+#         pass
+#     return HttpResponseRedirect("/")    
+
+
+class EmployeeDeletePage(RedirectView):
+    url="/"
+    def get_redirect_url(self, *args, **kwargs):
+        id = kwargs['id']
+        Employee.objects.get(id=id).delete()
+        return super().get_redirect_url(*args, **kwargs)
+
+
+
 
 
 
