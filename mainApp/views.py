@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView
 from .forms import EmplyeeForm
 
+
 #class view template
 class DisplayClassView(TemplateView):
     template_name="index.html"
@@ -12,7 +13,6 @@ class DisplayClassView(TemplateView):
         data = Employee.objects.all().order_by("-id")
         context={'data':data}
         return context
-
 
 # def homepage(Request):
 #     data = Employee.objects.all().order_by("-id")
@@ -44,9 +44,7 @@ def addPage(Request):
         return render(Request,"add.html",{'form':ef})
 
 
-
 def editPage(Request):
-
     return render(Request,'edit.html')
 
 
