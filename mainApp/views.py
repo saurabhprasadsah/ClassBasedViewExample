@@ -15,7 +15,7 @@ class EmployeeClassView(TemplateView):
         return context
     
 
-
+#class based postview
 class EmployeePostclassView(TemplateView):
     template_name="add.html"
     def get_context_data(self,*args,**kwargs):
@@ -43,7 +43,7 @@ class EmployeePostclassView(TemplateView):
 
 
 
-
+#function based view
 def deletePage(Request,id):
     try:
         data= Employee.objects.get(id=id).delete()
