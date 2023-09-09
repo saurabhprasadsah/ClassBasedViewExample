@@ -22,21 +22,31 @@ from mainApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path("", TemplateView.as_view(template_name="index.html"),name="home"),    
-    # path("",views.homepage,name="home"),
+
+    #template based url passing 
+    # path("", TemplateView.as_view(template_name="index.html"),name="home"), 
     
+    # function based url    
+    # path("",views.homepage,name="home"),
+
+    #class based url
     path("", views.EmployeeClassView.as_view(), name="home"),
 
+    #function based addPage
+    # path("addPage/",views.addPage,name='add'),
+
+    #class based url passing
     path("addPage/", views.EmployeePostclassView.as_view(), name="add"),
 
+    #function based deletPage
     # path("delete/<int:id>/",views.deletePage, name='delete'),
+
+    #class based deletePage
     path('delete/<int:id>/', views.EmployeeDeletePage.as_view(),name="delete")
 
 
 
 
-    # path("addPage/",views.addPage,name='add'),
-    # path("editPage/", views.editPage, name='edit')
 
 
 ]
