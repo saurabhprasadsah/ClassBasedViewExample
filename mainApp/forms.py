@@ -2,7 +2,7 @@ from django import forms
 from .models import Employee
 
 class EmplyeeForm(forms.ModelForm):
-    class Meta:
+    class Meta: #meta will be represent the innner class Employeeform
         model =Employee
         fields= ['name','email','phone','dsg','salary','city','state']
         widgets= {
