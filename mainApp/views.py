@@ -14,7 +14,17 @@ class EmployeeClassView(TemplateView):
         context={'data':data}
         return context
     
-    def post(Request,self):
+
+
+class EmployeePostclassView(TemplateView):
+    template_name="add.html"
+    def get_context_data(self,*args,**kwargs):
+        context = super().get_context_data(**kwargs)
+        ef = EmplyeeForm()
+        context= {'form':ef}
+        return context
+
+    def post(self,Request):
         ef= EmplyeeForm(Request.POST)
         if(ef.is_valid()):
             e = Employee()
