@@ -12,6 +12,13 @@
         <form action="{% url 'add' %}" method="post">
             {% csrf_token %}
             {{form.as_p}}
+
+            <!---{{ form.as_div }} will render them wrapped in <div> tags.
+                 {{ form.as_table }} will render them as table cells wrapped in <tr> tags.
+                 {{ form.as_p }} will render them wrapped in <p> tags.
+                 {{ form.as_ul }} will render them wrapped in <li> tags.
+                 Note that you’ll have to provide the surrounding <table> or <ul> elements yo---->
+                    
             <button type="submit" class="btn btn-primary w-100"> Submit</button>    
         </form>
     </div>
