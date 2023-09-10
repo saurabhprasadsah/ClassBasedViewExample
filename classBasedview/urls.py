@@ -42,7 +42,11 @@ urlpatterns = [
     # path("delete/<int:id>/",views.deletePage, name='delete'),
 
     #class based deletePage
-    path('delete/<int:id>/', views.EmployeeDeletePage.as_view(),name="delete")
+    path('delete/<int:id>/', views.EmployeeDeletePage.as_view(),name="delete"),
+
+
+    #function basedUpdatepage
+    path('update/<int:id>/',views.updatePage,name="update")
 
 
 

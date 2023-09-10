@@ -67,7 +67,7 @@
           <td>{{item.salary}}</td>
           <td>{{item.city}}</td>
           <td>{{item.state}}</td>
-          <td><a href="#"><span class="material-symbols-outlined text-success">edit</span></a></td>
+          <td><a href="{% url 'update'   item.id  %}"><span class="material-symbols-outlined text-success">edit</span></a></td>
           <td><a href="{% url 'delete' item.id %}"><span class="material-symbols-outlined text-danger">delete_forever</span></a></td>
         </tr>
         {% endfor %}
