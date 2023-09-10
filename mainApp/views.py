@@ -29,7 +29,7 @@ from django.db.models  import Q
 class EmployeeClassView(View):
     def get(self,Request):
         data = Employee.objects.all().order_by("id")
-        paginator = Paginator(data, 7)  # Show 25 contacts per page.
+        paginator = Paginator(data, 20)  # Show 25 contacts per page.
         page_number = Request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         return render(Request,"index.html", {'data':page_obj})
