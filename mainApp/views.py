@@ -144,15 +144,15 @@ class EmployeeDeletePage(RedirectView):
 #     return HttpResponseRedirect("/")
 
 class EmployeeUpdateView(View):
-     template_name= "update.html"
-     def get(self,Request,id):
+    template_name= "update.html"
+    def get(self,Request,id):
          self.data= Employee.objects.get(id=id)
          ef = EmplyeeForm(instance=self.data)
          return render(Request,"update.html",{'form':ef})
      
 
-     def post(self,Request):
-          ef= EmplyeeForm(Request.POST)
+    def post(self,Request):
+          ef= EmplyeeForm(Request.POS)
           if(ef.is_valid()):
                self.data.name= ef.cleaned_data['name']
                self.data.email= ef.cleaned_data['email']
@@ -160,11 +160,12 @@ class EmployeeUpdateView(View):
                self.data.dsg= ef.cleaned_data['dsg']
                self.data.salary= ef.cleaned_data['salary']
                self.data.city= ef.cleaned_data['city']
-               self.data.state= ef.cleaned_data['satate']
+               self.data.state= ef.cleaned_data['state']
                self.data.save()
                return HttpResponseRedirect('/')
           else:
-               return render(Request,"add.html",{'form':ef})
+               return render(Request,"update.html",{'form':ef})
+
 
 
 
