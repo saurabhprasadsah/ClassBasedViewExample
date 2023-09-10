@@ -12,7 +12,7 @@ class EmplyeeForm(forms.ModelForm):
             'dsg':forms.TextInput(attrs={'class':'forms.control','placeholder':'Enter Designation'}),
             'salary':forms.TextInput(attrs={'class':'forms.control','placeholder':'Enter salary'}),
             'city':forms.TextInput(attrs={'class':'forms.control','placeholder':'Enter city Name'}),
-            'state':forms.TextInput(attrs={'class':'forms.control','placeholder':'Enter state Name'})
+            'state':forms.TextInput(attrs={'class':'forms.control','placeholder':'Enter state Name'}),
             
         } 
     def clean(self):
