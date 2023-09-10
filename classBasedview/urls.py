@@ -46,7 +46,7 @@ urlpatterns = [
 
 
     #function basedUpdatepage
-    path('update/<int:id>/',views.updatePage,name="update")
+    path("update/<int:id>/",views.updatePage,name="update"),
 
 
 

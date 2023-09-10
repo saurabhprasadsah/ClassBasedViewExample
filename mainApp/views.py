@@ -97,29 +97,52 @@ class EmployeeDeletePage(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
+# def updatePage(Request,id):
+#     try:
+#         data= Employee.objects.get(id=id)
+#         if(Request.method=="POST"):
+#             ef= EmplyeeForm(Request.POST)
+#             if(ef.is_valid()):
+#                 data = Employee()
+#                 data.name= ef.cleaned_data['name']
+#                 data.email=ef.cleaned_data['email']
+#                 data.phone=ef.cleaned_data['phone']
+#                 data.dsg=ef.cleaned_data['dsg']
+#                 data.salary=ef.cleaned_data['salary']
+#                 data.city =ef.cleaned_data['city']
+#                 data.state =ef.cleaned_data['state']
+#                 data.save()
+#                 return(HttpResponseRedirect('/'))
+#         else:   
+#             ef= EmplyeeForm(instance=data)
+#             return render(Request,"updates.html",{'data':data,'form':ef})
+#     except:
+#          pass 
+#     return HttpResponseRedirect("/") 
+# 
+# 
 def updatePage(Request,id):
-    try:
-        data= Employee.objects.get(id=id)
+    # try:
+        data = Employee.objects.get(id=id)
         if(Request.method=="POST"):
-            ef= EmplyeeForm(Request.POST)
+            ef = EmplyeeForm(Request.POST)
             if(ef.is_valid()):
-                data = Employee()
-                data.name= ef.cleaned_data['name']
-                data.email=ef.cleaned_data['email']
-                data.phone=ef.cleaned_data['phone']
-                data.dsg=ef.cleaned_data['dsg']
-                data.salary=ef.cleaned_data['salary']
-                data.city =ef.cleaned_data['city']
-                data.state =ef.cleaned_data['state']
+                data.name = ef.cleaned_data['name']
+                data.email = ef.cleaned_data['email']
+                data.phone = ef.cleaned_data['phone']
+                data.dsg = ef.cleaned_data['dsg']
+                data.salary = ef.cleaned_data['salary']
+                data.city = ef.cleaned_data['city']
+                data.state = ef.cleaned_data['state']
                 data.save()
-                return(HttpResponseRedirect('/'))
+                return HttpResponseRedirect("/")
         else:
-            ef= EmplyeeForm()
-            return render(Request,"add.html",{'data':data,'form':ef})
-    except:
-         pass 
-    return HttpResponseRedirect("/")  
-     
+            ef = EmplyeeForm(instance=data)
+            return render(Request,"update.html",{'form':ef})
+    # except:
+    #     pass
+    # return HttpResponseRedirect("/")
+
 
 
 
