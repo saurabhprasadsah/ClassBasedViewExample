@@ -8,7 +8,7 @@
 <div class="container-fluid mid-section my-3">
      <div class="w-75 m-auto">
           <h5 class="text-center p-2 bg-primary text-light">Create Employee Record</h5>
-          <form action="{% url 'add' %}" method="post">
+          <form action="" method="post">
                {% csrf_token %}
                {{form.as_p}}
                <button type="submit" class="btn btn-primary w-100">Submit</button>
