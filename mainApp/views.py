@@ -1,7 +1,7 @@
-from typing import Any
+from django.views import View
 from django.shortcuts import render,HttpResponseRedirect
 from .models import Employee
-from django.core.paginator import Paginator
+# from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView,RedirectView
 from .forms import EmplyeeForm
 
@@ -121,27 +121,51 @@ class EmployeeDeletePage(RedirectView):
 #     return HttpResponseRedirect("/") 
 # 
 # 
-def updatePage(Request,id):
-    try:
-        data = Employee.objects.get(id=id)
-        if(Request.method=="POST"):
-            ef = EmplyeeForm(Request.POST)
-            if(ef.is_valid()):
-                data.name = ef.cleaned_data['name']
-                data.email = ef.cleaned_data['email']
-                data.phone = ef.cleaned_data['phone']
-                data.dsg = ef.cleaned_data['dsg']
-                data.salary = ef.cleaned_data['salary']
-                data.city = ef.cleaned_data['city']
-                data.state = ef.cleaned_data['state']
-                data.save()
-                return HttpResponseRedirect("/")
+# def updatePage(Request,id):
+#     try:
+#         data = Employee.objects.get(id=id)
+#         if(Request.method=="POST"):
+#             ef = EmplyeeForm(Request.POST)
+#             if(ef.is_valid()):
+#                 data.name = ef.cleaned_data['name']
+#                 data.email = ef.cleaned_data['email']
+#                 data.phone = ef.cleaned_data['phone']
+#                 data.dsg = ef.cleaned_data['dsg']
+#                 data.salary = ef.cleaned_data['salary']
+#                 data.city = ef.cleaned_data['city']
+#                 data.state = ef.cleaned_data['state']
+#                 data.save()
+#                 return HttpResponseRedirect("/")
+#         else:
+#             ef = EmplyeeForm(instance=data)
+#             return render(Request,"update.html",{'form':ef})
+#     except:
+#          pass
+#     return HttpResponseRedirect("/")
+
+
+class EmployeeUpdateClassView(View):
+    template_name = "update.html"
+    def get(self,Request,id):
+        self.data = Employee.objects.get(id=id)
+        ef = EmplyeeForm(instance=self.data)
+        return render(Request,"update.html",{'form':ef})
+    
+    def post(self,Request):
+        ef = EmplyeeForm(Request.POST)
+        if(ef.is_valid()):
+            self.data.name = ef.cleaned_data['name']
+            self.data.email = ef.cleaned_data['email']
+            self.data.phone = ef.cleaned_data['phone']
+            self.data.dsg = ef.cleaned_data['dsg']
+            self.data.salary = ef.cleaned_data['salary']
+            self.data.city = ef.cleaned_data['city']
+            self.data.state = ef.cleaned_data['state']
+            self.data.save()
+            return HttpResponseRedirect("/")
         else:
-            ef = EmplyeeForm(instance=data)
-            return render(Request,"update.html",{'form':ef})
-    except:
-         pass
-    return HttpResponseRedirect("/")
+            return render(Request,"add.html",{'form':ef})
+
 
 
 
