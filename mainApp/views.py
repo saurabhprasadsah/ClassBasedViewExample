@@ -122,7 +122,7 @@ class EmployeeDeletePage(RedirectView):
 # 
 # 
 def updatePage(Request,id):
-    # try:
+    try:
         data = Employee.objects.get(id=id)
         if(Request.method=="POST"):
             ef = EmplyeeForm(Request.POST)
@@ -139,9 +139,9 @@ def updatePage(Request,id):
         else:
             ef = EmplyeeForm(instance=data)
             return render(Request,"update.html",{'form':ef})
-    # except:
-    #     pass
-    # return HttpResponseRedirect("/")
+    except:
+         pass
+    return HttpResponseRedirect("/")
 
 
 
