@@ -48,12 +48,9 @@ urlpatterns = [
     #function basedUpdatepage
     #path("update/<int:id>/",views.updatePage,name="update"),
     path("update/<int:id>/", views.EmployeeUpdateView.as_view(),name="update"),
+     
 
-
-
-
-
-
-
+   #path("search/",views.searchPage,name="search")
+   path("search/",views.EmployeeSearch.as_view(), name="search")
 
 ]

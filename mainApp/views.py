@@ -1,10 +1,10 @@
 from django.views import View
 from django.shortcuts import render,HttpResponseRedirect
 from .models import Employee
-# from django.core.paginator import Paginator
+from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView,RedirectView
 from .forms import EmplyeeForm
-
+from django.db.models  import Q
 
 
 # def homepage(Request):
@@ -16,13 +16,24 @@ from .forms import EmplyeeForm
 
 
 #class view template
-class EmployeeClassView(TemplateView):
-    template_name="index.html"
-    def get_context_data(self,*args,**kwargs):
-        context = super().get_context_data(**kwargs)
+# class EmployeeClassView(TemplateView):
+#     template_name="index.html"
+#     def get_context_data(self,*args,**kwargs):
+#         context = super().get_context_data(**kwargs)
+#         data = Employee.objects.all().order_by("id")
+#         context={'data':data}
+#         return context
+    
+
+
+class EmployeeClassView(View):
+    def get(self,Request):
         data = Employee.objects.all().order_by("id")
-        context={'data':data}
-        return context
+        paginator = Paginator(data, 7)  # Show 25 contacts per page.
+        page_number = Request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        return render(Request,"index.html", {'data':page_obj})
+    
     
 
 #class based postview
@@ -167,7 +178,26 @@ class EmployeeUpdateView(View):
                return render(Request,"update.html",{'form':ef})
 
 
+# def searchPage(Request):
+#      if(Request.method =="POST"):
+#           search = Request.POST.get('search')
+#           data= Employee.objects.filter(Q(name__icontains=search) |Q(email__icontains=search) |Q(phone__icontains=search) |Q(city__icontains=search) |Q(state__icontains=search))
+#           return render(Request, "index.html",{'data':data})
 
+
+class EmployeeSearch(View):
+     def post(self,Request):
+          if(Request.method=="POST"):
+                search = Request.POST.get('search')
+                data= Employee.objects.filter(Q(name__icontains=search) |Q(email__icontains=search) |Q(phone__icontains=search) |Q(city__icontains=search) |Q(state__icontains=search))
+                paginator = Paginator(data, 1)  # Show 25 contacts per page.
+                page_number = Request.GET.get("page")
+                page_obj = paginator.get_page(page_number)
+                return render(Request, "index.html",{'data':page_obj})
+          else:
+               return HttpResponseRedirect("/")
+
+         
 
 
 
